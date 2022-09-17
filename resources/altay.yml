@@ -1,0 +1,22 @@
+
+#CONFIG VERSION DO NOT TOUCH THIS FOR AUTO CONFIG UPDATE
+config-version: 1.0.0
+
+#IF YOU WANT TO AUTO MOB SPAWN ON YOUR SERVER ENABLE THIS
+auto-mob-spawn: true
+
+#IF YOU ENABLED AUTO MOB SPAWN AND IF YOU WANT TO OPEN ONLY SOME WORLDS FOR AUTO MOB SPAWN ENABLE THIS!
+auto-mob-spawn-allowed-worlds: false
+
+#IF YOU ENABLED AUTO MOB SPAWN AND IF YOU WANT TO CLOSE AUTO MOB SPAWN IN SOME WORLDS ENABLE THIS!
+auto-mob-spawn-not-allowed-worlds: false
+
+#YOU CAN CHANGE CACTUS GROWN SPEED. DEFAULT VALUE: 10
+#MINIMUM VALUE: 1
+#if this value is too much, the growth rate of the cactus slows down.
+cactus-grown-chance: 10
+
+#YOU CAN CHANGE SUGARCANE GROWN SPEED. DEFAULT VALUE: 10
+#MINIMUM VALUE: 1
+#if this value is too much, the growth rate of the sugarcane slows down.
+sugarcane-grown-chance: 10
