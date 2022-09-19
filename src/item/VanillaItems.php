@@ -737,5 +737,9 @@ final class VanillaItems{
 		self::register("allay_spawn_egg", $factory->get(Ids::SPAWN_EGG, 134));
 		self::register("spyglass", $factory->get(Ids::SPYGLASS));
 		self::register("name_tag", $factory->get(Ids::NAME_TAG));
+		self::register("copper_ingot", $factory->get(Ids::COPPER_INGOT));
+		self::register("raw_iron", $factory->get(Ids::RAW_IRON));
+		self::register("raw_gold", $factory->get(Ids::RAW_GOLD));
+		self::register("raw_copper", $factory->get(Ids::RAW_COPPER));
 	}
 }

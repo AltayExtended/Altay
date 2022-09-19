@@ -747,4 +747,9 @@ final class ItemIds{
 	public const NETHERITE_SHOVEL = 605;
 	public const NETHERITE_PICKAXE = 606;
 
+	public const COPPER_INGOT = 514;
+	public const RAW_IRON = 515;
+	public const RAW_GOLD = 516;
+	public const RAW_COPPER = 517;
+
 }

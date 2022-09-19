@@ -347,6 +347,11 @@ class ItemFactory{
 		$this->register(new WritableBook(new IID(Ids::WRITABLE_BOOK, 0), "Book & Quill"));
 		$this->register(new WrittenBook(new IID(Ids::WRITTEN_BOOK, 0), "Written Book"));
 
+		$this->register(new Item(new IID(Ids::COPPER_INGOT, 0), "Copper Ingot"));
+		$this->register(new Item(new IID(Ids::RAW_IRON, 0), "Raw Iron"));
+		$this->register(new Item(new IID(Ids::RAW_GOLD, 0), "Raw Gold"));
+		$this->register(new Item(new IID(Ids::RAW_COPPER, 0), "Raw Copper"));
+
 		foreach(SkullType::getAll() as $skullType){
 			$this->register(new Skull(new IID(Ids::SKULL, $skullType->getMagicNumber()), $skullType->getDisplayName(), $skullType));
 		}
