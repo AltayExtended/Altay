@@ -1,0 +1,6 @@
+name: Altay
+version: 1.0.1
+api: 4.8.2
+main: Altay\AltayDepends\Main
+author: TuranicTeam
+github: https://github.com/AltayExtended/Altay

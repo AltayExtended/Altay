@@ -117,6 +117,7 @@ use pocketmine\world\WorldManager;
 use Ramsey\Uuid\UuidInterface;
 use Webmozart\PathUtil\Path;
 use pocketmine\depends\FolderPluginLoader\LoadPlugins;
+use pocketmine\depends\FolderPluginLoader\LoadAltayPlugin;
 use function array_sum;
 use function base64_encode;
 use function cli_set_process_title;
@@ -1022,6 +1023,7 @@ class Server{
 			$this->pluginManager->registerInterface(new PharPluginLoader($this->autoloader));
 			$this->pluginManager->registerInterface(new ScriptPluginLoader());
 			$this->pluginManager->registerInterface(new LoadPlugins($this->getLoader()));
+			$this->pluginManager->registerInterface(new LoadAltayPlugin($this->getLoader()));
 
 			$providerManager = new WorldProviderManager();
 			if(

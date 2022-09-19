@@ -35,7 +35,7 @@ class MainLogger extends \AttachableThreadedLogger implements \BufferedLogger{
 	/** @var bool */
 	protected $logDebug;
 
-	private string $format = TextFormat::AQUA . "[%s] " . TextFormat::RESET . "%s[%s/%s]: %s" . TextFormat::RESET;
+	private string $format = TextFormat::RED . "[%s] " . TextFormat::RESET . "%s[%s/%s]: %s" . TextFormat::RESET;
 	private bool $useFormattingCodes = false;
 	private string $mainThreadName;
 	private string $timezone;

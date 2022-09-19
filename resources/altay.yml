@@ -1,6 +1,6 @@
 
 #CONFIG VERSION DO NOT TOUCH THIS FOR AUTO CONFIG UPDATE
-config-version: 1.0.0
+config-version: 1.0.1
 
 #IF YOU WANT TO AUTO MOB SPAWN ON YOUR SERVER ENABLE THIS
 auto-mob-spawn: true
