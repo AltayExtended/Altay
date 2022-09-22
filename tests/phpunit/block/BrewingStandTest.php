@@ -25,8 +25,8 @@ namespace pocketmine\block;
 
 use PHPUnit\Framework\TestCase;
 use pocketmine\block\utils\BrewingStandSlot;
-use function count;
 use function array_values;
+use function count;
 
 class BrewingStandTest extends TestCase{
 
