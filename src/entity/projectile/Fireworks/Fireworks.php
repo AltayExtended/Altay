@@ -8,7 +8,6 @@ use pocketmine\altay\Session;
 use pocketmine\entity\projectile\Fireworks\FireworksRocket;
 use pocketmine\block\Block;
 use pocketmine\entity\Location;
-use pocketmine\item\ElytraItem;
 use pocketmine\item\Item;
 use pocketmine\item\ItemUseResult;
 use pocketmine\math\Vector3;

@@ -34,7 +34,7 @@ final class VersionInfo{
 	public const BASE_VERSION = "4.10.9";
 	public const IS_DEVELOPMENT_BUILD = false;
 	public const BUILD_CHANNEL = "stable";
-	public const ALTAY_VERSION = "1.0.2";
+	public const ALTAY_VERSION = "1.0.3";
 
 	private function __construct(){
 		//NOOP
