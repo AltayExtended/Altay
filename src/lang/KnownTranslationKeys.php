@@ -208,6 +208,7 @@ final class KnownTranslationKeys{
 	public const IP_CONFIRM = "ip_confirm";
 	public const IP_GET = "ip_get";
 	public const IP_WARNING = "ip_warning";
+	public const ITEM_RECORD_OTHER_SIDE_DESC = "item.record_otherside.desc";
 	public const ITEM_RECORD_11_DESC = "item.record_11.desc";
 	public const ITEM_RECORD_13_DESC = "item.record_13.desc";
 	public const ITEM_RECORD_BLOCKS_DESC = "item.record_blocks.desc";

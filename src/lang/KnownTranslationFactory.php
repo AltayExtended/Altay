@@ -942,6 +942,14 @@ final class KnownTranslationFactory{
 		]);
 	}
 
+	public static function item_record_pig_step_desc() : Translatable{
+		return new Translatable(KnownTranslationKeys::ITEM_RECORD_PIGSTEP_DESC, []);
+	}
+
+	public static function item_record_other_side_desc() : Translatable{
+		return new Translatable(KnownTranslationKeys::ITEM_RECORD_OTHER_SIDE_DESC, []);
+	}
+
 	public static function item_record_11_desc() : Translatable{
 		return new Translatable(KnownTranslationKeys::ITEM_RECORD_11_DESC, []);
 	}

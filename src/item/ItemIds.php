@@ -730,6 +730,9 @@ final class ItemIds{
 	public const RECORD_WARD = 2265;
 	public const RECORD_11 = 2266;
 	public const RECORD_WAIT = 2267;
+	public const RECORD_OTHER_SIDE = 2268;
+	public const RECORD_5 = 2269;
+	public const RECORD_PIG_STEP = 2270;
 
 	public const SHIELD = 513;
 	public const WARDEN_SPAWN_EGG = 632;
