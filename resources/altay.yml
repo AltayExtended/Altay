@@ -1,5 +1,5 @@
 #DO NOT TOUCH THAT
-config-version: 1.0.1
+config-version: 1.0.3
 
 #AUTO MOB SPAWNING IN WORLDS
 auto-mob-spawn: true
@@ -15,3 +15,6 @@ cactus-grown-chance: 10
 
 #SUGARCANE GROWNING SPEED (DEFAULT= 10), (MINIMUM= 1)
 sugarcane-grown-chance: 10
+
+#If this setting is turned on, people can create snow golem on your server.
+snow-golem-creation: true

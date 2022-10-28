@@ -32,6 +32,10 @@ class Attributes{
 		return in_array($name, ["Cod", "Dolphin", "ElderGuardian", "PufferFish", "Salmon", "Squid", "TropicalFish", "GlowSquid","Tadpole", "Axolotl", "Drowned"]);
 	}
 
+	public function isSnowGolem(string $name) : bool {
+		return in_array($name, ["SnowGolem"]);
+	}
+
 	public function getEnemyAttack(string $name) : string{
 		$enemies = ["Zombie" => "Villager", "Wolf" => "Sheep", "Fox" => "Rabbit", "Fox" => "Chicken"];
 		foreach($enemies as $source => $target){

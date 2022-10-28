@@ -132,6 +132,10 @@ class AltayEntity extends Living{
 		return (new Attributes)->NearFighter($this->getName());
 	}
 
+	public function isSnowGolem() : bool {
+		return (new Attributes)->isSnowGolem($this->getName());
+	}
+
 	public function isSwimmingMob() : bool{
 		$swim = (new Attributes)->isSwimmingMob($this->getName());
 		$ticks = $this->getAirSupplyTicks();

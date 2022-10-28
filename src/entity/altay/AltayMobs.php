@@ -77,6 +77,7 @@ use pocketmine\entity\ZombieVillager;
 use pocketmine\entity\Phantom;
 use pocketmine\entity\Pillager;
 use pocketmine\entity\Ravager;
+use pocketmine\entity\SnowGolem;
 
 class AltayMobs{
 
@@ -292,5 +293,8 @@ class AltayMobs{
 	}
 	public function createRavager(World $world, Vector3 $pos, float $yaw, float $pitch) : Entity{
 		return new Ravager(Location::fromObject($pos, $world, $yaw, $pitch));
+	}
+	public function createSnowGolem(World $world, Vector3 $pos, float $yaw, float $pitch) : Entity{
+		return new SnowGolem(Location::fromObject($pos, $world, $yaw, $pitch));
 	}
 }

@@ -14,76 +14,80 @@ use pocketmine\entity\altay\AltayEntity;
 use pocketmine\world\World;
 use pocketmine\block\VanillaBlocks;
 
-class EntityMove{
+class EntityMove
+{
 
-	public function tick(AltayEntity $entity){
+	public function tick(AltayEntity $entity)
+	{
 		$timer = $entity->getTimer() - 1;
 		$typeflyingmob = $entity->isFlyingMob();
 		$entity->setTimer($timer);
 
-		if($timer > 0){
+		if ($timer > 0) {
 			return $this->waitentity($entity);
 		}
-		if($timer == 0 and $typeflyingmob == false and mt_rand(0, 1) == 1 and $entity->getTargetEntity() === null){
+		if ($timer == 0 and $typeflyingmob == false and mt_rand(0, 1) == 1 and $entity->getTargetEntity() === null) {
 			return $entity->setTimer(mt_rand(120, 400));
 		}
 		$position = $entity->getDestination();
-		if(!$position->x and !$position->y and !$position->z){
+		if (!$position->x and !$position->y and !$position->z) {
 			$entity->setDestination($this->getRandomPosition($entity));
 		}
-		if($entity->getTimer() > 0){
+		if ($entity->getTimer() > 0) {
 			return;
 		}
 		$this->entitymove($entity);
 	}
 
-	public function getRandomPosition(AltayEntity $entity) : Vector3{
+	public function getRandomPosition(AltayEntity $entity): Vector3
+	{
 		$position = $this->getEnemyPosition($entity);
 
-		if(!$position->equals(new Vector3(0, 0, 0))){
+		if (!$position->equals(new Vector3(0, 0, 0))) {
 			return $position;
 		}
 
 		$position = $this->getSaferSpawn($entity->getPosition(), $entity->getWorld(), 15);
 
-		if($entity->isFlyingMob() == true){
+		if ($entity->isFlyingMob() == true) {
 			$position->add(0, 10, 0);
 		}
-		if($entity->isSwimmingMob() == true){
+		if ($entity->isSwimmingMob() == true) {
 			$position->add(0, mt_rand(-10, 10), 0);
 		}
 
 		$block = $entity->getWorld()->getBlock($position);
 
-		if($entity->isSwimmingMob() and !$block instanceof Water){
+		if ($entity->isSwimmingMob() and !$block instanceof Water) {
 			$entity->setTimer(40);
 			return new Vector3(0, 0, 0);
 		}
-		if(!$entity->isSwimmingMob() and $block instanceof Water){
+		if (!$entity->isSwimmingMob() and $block instanceof Water) {
 			$entity->setTimer(40);
 			return new Vector3(0, 0, 0);
 		}
-		if($block->isSolid()){
+		if ($block->isSolid()) {
 			$entity->setTimer(40);
 			return new Vector3(0, 0, 0);
 		}
 		return $position;
 	}
 
-	public function getEnemyPosition(AltayEntity $entity) : Vector3{
-		if($entity->NearFighter() == false){
+	public function getEnemyPosition(AltayEntity $entity): Vector3
+	{
+		if ($entity->NearFighter() == false) {
 			return new Vector3(0, 0, 0);
 		}
-		if($entity->getTargetEntity() !== null){
+		if ($entity->getTargetEntity() !== null) {
 			return $entity->getTargetEntity()->getPosition()->asVector3();
 		}
-		foreach($entity->getWorld()->getNearbyEntities($entity->getBoundingBox()->expandedCopy(15, 15, 15)) as $e){
-			if($e instanceof Player and $e->isAlive() and $e->isCreative() == false){
+		foreach ($entity->getWorld()->getNearbyEntities($entity->getBoundingBox()->expandedCopy(15, 15, 15)) as $e) {
+			if ($e instanceof Player and $e->isAlive() and $e->isCreative() == false) {
 				$entity->setTargetEntity($e);
 				$pos = $e->getPosition();
 				return new Vector3($pos->x, 0, $pos->z);
 			}
-			if(($e instanceof Player or $e instanceof AltayEntity) and $e->getName() === $entity->mortalenemy()){
+			if (($e instanceof Player or $e instanceof AltayEntity) and $e->getName() === $entity->mortalenemy()) {
 				$entity->setTargetEntity($e);
 				$entity->setMovementSpeed(2.00);
 				$pos = $e->getPosition();
@@ -93,21 +97,22 @@ class EntityMove{
 		return new Vector3(0, 0, 0);
 	}
 
-	public function getSaferSpawn(Vector3 $start, World $world, int $radius) : Vector3{
-		for($r = $radius; $r > 5; $r -= 5){
+	public function getSaferSpawn(Vector3 $start, World $world, int $radius): Vector3
+	{
+		for ($r = $radius; $r > 5; $r -= 5) {
 			$x = mt_rand(-$r, $r);
 			$m = sqrt(pow($r, 2) - pow($x, 2));
-			$z = mt_rand((int) -$m, (int) $m);
+			$z = mt_rand((int)-$m, (int)$m);
 
 			$vector = new Vector3($start->x + $x, $start->y, $start->z + $z);
 
 			$chunk = $world->getOrLoadChunkAtPosition($vector);
 
-			if($chunk === null){
+			if ($chunk === null) {
 				continue;
 			}
 			$safeposition = $world->getSafeSpawn($vector);
-			if($safeposition->y > 0){
+			if ($safeposition->y > 0) {
 
 				return $safeposition;
 
@@ -117,17 +122,18 @@ class EntityMove{
 		}
 	}
 
-	public function stopentity(Vector3 $start, World $world, int $radius) : Vector3{
-		for($r = $radius; $r > 5; $r -= 5){
+	public function stopentity(Vector3 $start, World $world, int $radius): Vector3
+	{
+		for ($r = $radius; $r > 5; $r -= 5) {
 			$x = mt_rand(-$r, $r);
 			$m = sqrt(pow($r, 2) - pow($x, 2));
-			$z = mt_rand((int) -$m, (int) $m);
+			$z = mt_rand((int)-$m, (int)$m);
 
 			$vector = new Vector3($start->x + $x, $start->y, $start->z + $z);
 
 			$chunk = $world->getOrLoadChunkAtPosition($vector);
 
-			if($chunk === null){
+			if ($chunk === null) {
 				continue;
 			}
 
@@ -136,7 +142,8 @@ class EntityMove{
 
 	}
 
-	public function entitymove(AltayEntity $entity){
+	public function entitymove(AltayEntity $entity)
+	{
 		$motion = $entity->getMotion();
 		$location = $entity->getLocation();
 		$position = $entity->getPosition();
@@ -145,8 +152,15 @@ class EntityMove{
 		$nearfighter = $entity->NearFighter();
 		$world = $entity->getPosition()->getWorld();
 
-		if($entity->NearFighter() == true){
-			if($world->isInWorld((int) $position->getFloorX(), (int) $position->getFloorY(), (int) $position->getFloorZ())){
+		if ($entity->isSnowGolem() == true) {
+			$positiong = new Vector3($position->getFloorX(), $position->getFloorY(), $position->getFloorZ());
+			if ($world->isInWorld((int)$position->getFloorX(), (int)$position->getFloorY() - 2, (int)$position->getFloorZ())) {
+				$world->setBlock($positiong, VanillaBlocks::SNOW_LAYER());
+			}
+		}
+
+		if ($entity->NearFighter() == true) {
+			if ($world->isInWorld((int)$position->getFloorX(), (int)$position->getFloorY(), (int)$position->getFloorZ())) {
 
 				$targetpos = $this->calculatemotion($entity);
 				$motion->x = $targetpos->x;
@@ -162,17 +176,17 @@ class EntityMove{
 				$block2 = $world->getBlockAt($blockx - 1, $blocky, $blockz);
 				$block3 = $world->getBlockAt($blockx, $blocky, $blockz + 1);
 				$block4 = $world->getBlockAt($blockx, $blocky, $blockz - 1);
-				if(!$block1->getId() == Ids::AIR or !$block2->getId() == Ids::AIR or !$block3->getId() == Ids::AIR or !$block4->getId() == Ids::AIR){
+				if (!$block1->getId() == Ids::AIR or !$block2->getId() == Ids::AIR or !$block3->getId() == Ids::AIR or !$block4->getId() == Ids::AIR) {
 					return $entity->setDestination($this->getRandomPosition($entity));
 				}
 
 			}
 		}
 
-		if(!$entity->onGround and $motion->y < 0 and $flyingmob == false and $swimmingmob == false){
+		if (!$entity->onGround and $motion->y < 0 and $flyingmob == false and $swimmingmob == false) {
 			$motion->y *= 0.6;
-		}else{
-			if(mt_rand(0, 500) == 1 or ($entity->isCollided == true and $swimmingmob == true)){
+		} else {
+			if (mt_rand(0, 500) == 1 or ($entity->isCollided == true and $swimmingmob == true)) {
 
 				$entity->setDestination($this->getRandomPosition($entity));
 			}
@@ -181,13 +195,13 @@ class EntityMove{
 			$motion->y = $targetpos->y;
 			$motion->z = $targetpos->z;
 		}
-		if($entity->getTimer() > 0){
+		if ($entity->getTimer() > 0) {
 			return;
 		}
-		if($entity->isCollidedHorizontally == true and $swimmingmob == false){
+		if ($entity->isCollidedHorizontally == true and $swimmingmob == false) {
 			$motion->y = 1;
 		}
-		if($entity->isJumpingMob() == true and $entity->onGround){
+		if ($entity->isJumpingMob() == true and $entity->onGround) {
 			$motion->y = 1;
 		}
 
@@ -201,48 +215,63 @@ class EntityMove{
 		$this->attack($entity, 4);
 	}
 
-	public function isHaveSun(World $world) : bool{
+	public function isHaveSun(World $world): bool
+	{
 		return $world->getSunAngleDegrees() < 90 or $world->getSunAngleDegrees() > 270;
 	}
 
-	public function waitentity(AltayEntity $entity){
+	public function waitentity(AltayEntity $entity)
+	{
 		$location = $entity->getLocation();
-		foreach($entity->getPosition()->getWorld()->getServer()->getOnlinePlayers() as $player){
-			if($player->getPosition()->distance($entity->getPosition()) < 6){
+		$position = $entity->getPosition();
+		$world = $entity->getPosition()->getWorld();
+
+		if ($entity->isSnowGolem() == true) {
+			$positiong = new Vector3($position->getFloorX(), $position->getFloorY(), $position->getFloorZ());
+			if ($world->isInWorld((int)$position->getFloorX(), (int)$position->getFloorY() - 2, (int)$position->getFloorZ())) {
+				if (!$position->getWorld()->getBlockAt($position->getFloorX(), $position->getFloorY(), $position->getFloorZ())->getId() == 78) {
+					if (!$position->getWorld()->getBlockAt($position->getFloorX(), $position->getFloorY() - 1, $position->getFloorZ())->getId() == 78) {
+						$world->setBlock($positiong, VanillaBlocks::SNOW_LAYER());
+					}
+				}
+			}
+		}
+		foreach ($entity->getPosition()->getWorld()->getServer()->getOnlinePlayers() as $player) {
+			if ($player->getPosition()->distance($entity->getPosition()) < 6) {
 				$position = new Vector3($player->getPosition()->getFloorX(), $player->getPosition()->getFloorY() + 1, $player->getPosition()->getFloorZ());
 				$entity->lookAt($position);
-				if($entity->NearFighter() == true){
+				if ($entity->NearFighter() == true) {
 					$this->attack($entity, 4);
 
 				}
 			}
 		}
-		if($entity->lastUpdate % 100 == 0){
-			if($entity->getHealth() < $entity->getMaxHealth()){
+		if ($entity->lastUpdate % 100 == 0) {
+			if ($entity->getHealth() < $entity->getMaxHealth()) {
 				$entity->setHealth($entity->getHealth() + 1);
 			}
 		}
-		if($entity->isFlyingMob() == true){
+		if ($entity->isFlyingMob() == true) {
 			return;
 		}
-		if($entity->isSwimmingMob() == true){
-			if(!$entity->isUnderwater()){
+		if ($entity->isSwimmingMob() == true) {
+			if (!$entity->isUnderwater()) {
 				$entity->setTimer(-1);
 			}
 			return;
 		}
-		if($entity->canBeCaughtinSunLight() == true and $this->isHaveSun($entity->getWorld())){
+		if ($entity->canBeCaughtinSunLight() == true and $this->isHaveSun($entity->getWorld())) {
 			$entity->setOnFire(120);
 			$entity->setTargetEntity($entity);
 		}
-		if($entity->isOnFire()){
+		if ($entity->isOnFire()) {
 			$this->attack($entity, 4);
 		}
-		if(mt_rand(1, 200) == 1){
+		if (mt_rand(1, 200) == 1) {
 			$entity->lookAt($entity->getDefaultLook());
 			return;
 		}
-		if(mt_rand(1, 200) == 1){
+		if (mt_rand(1, 200) == 1) {
 			$x = $location->x + mt_rand(-1, 1);
 			$y = $location->y + mt_rand(-1, 1);
 			$z = $location->z + mt_rand(-1, 1);
@@ -250,7 +279,8 @@ class EntityMove{
 		}
 	}
 
-	public function calculatemotion(AltayEntity $entity) : Vector3{
+	public function calculatemotion(AltayEntity $entity): Vector3
+	{
 		$dest = $entity->getDestination();
 		$epos = $entity->getPosition();
 		$motion = $entity->getMotion();
@@ -262,20 +292,20 @@ class EntityMove{
 		$y = $dest->y - $epos->y;
 		$z = $dest->z - $epos->z;
 
-		if($x ** 2 + $z ** 2 < 0.7){
-			if($entity->getTargetEntity() === null){
+		if ($x ** 2 + $z ** 2 < 0.7) {
+			if ($entity->getTargetEntity() === null) {
 				$motion->y = 0;
 				$entity->setTimer($flyingmob == true ? 100 : 200);
 				$entity->setDestination(new Vector3(0, 0, 0));
 			}
-		}else{
+		} else {
 			$diff = abs($x) + abs($z);
 
 			$motion->x = $speed * 0.15 * ($x / $diff);
 			$motion->y = 0;
 			$motion->z = $speed * 0.15 * ($z / $diff);
 
-			if($entity->isSwimming()){
+			if ($entity->isSwimming()) {
 				$motion->y = $speed * 0.15 * ($y / $diff);
 			}
 		}
@@ -283,23 +313,24 @@ class EntityMove{
 		return new Vector3($motion->x, $motion->y, $motion->z);
 	}
 
-	public function attack(AltayEntity $entity, int $damage){
+	public function attack(AltayEntity $entity, int $damage)
+	{
 		$target = $entity->getTargetEntity();
 
-		if($target === null){
+		if ($target === null) {
 			return;
 		}
 
 		$dist = $entity->getPosition()->distanceSquared($target->getPosition());
 
-		if(!$target->isAlive() or $dist >= 50 or ($target instanceof Player and $target->isCreative() == true)){
+		if (!$target->isAlive() or $dist >= 50 or ($target instanceof Player and $target->isCreative() == true)) {
 			$entity->setMovementSpeed(1.00);
 			$entity->setTargetEntity(null);
 			return;
 		}
 
-		if($entity->getAttackDelay() > 20){
-			if($entity->getPosition()->distance($target->getPosition()) <= 2.0){
+		if ($entity->getAttackDelay() > 20) {
+			if ($entity->getPosition()->distance($target->getPosition()) <= 2.0) {
 				$entity->setAttackDelay(0);
 				$ev = new EntityDamageByEntityEvent($entity, $target, EntityDamageEvent::CAUSE_ENTITY_ATTACK, $damage);
 				$target->attack($ev);
