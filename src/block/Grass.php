@@ -41,64 +41,60 @@ use pocketmine\entity\Entity;
 
 use function mt_rand;
 
-class Grass extends Opaque{
+class Grass extends Opaque
+{
 
-	public function getDropsForCompatibleTool(Item $item) : array{
+	public function getDropsForCompatibleTool(Item $item): array
+	{
 		return [
 			VanillaBlocks::DIRT()->asItem()
 		];
 	}
 
-	public function isAffectedBySilkTouch() : bool{
+	public function isAffectedBySilkTouch(): bool
+	{
 		return true;
 	}
 
-	public function ticksRandomly() : bool{
+	public function ticksRandomly(): bool
+	{
 		return true;
 	}
 
-	public function isDayTime(World $world) : bool{
+	public function isDayTime(World $world): bool
+	{
 		return $world->getSunAngleDegrees() < 90 or $world->getSunAngleDegrees() > 270;
 	}
 
-	public function allowedcheck(){
-		$allowedworldscheck = $this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn-allowed-worlds");
-		if($allowedworldscheck == true){
-			$worldfoldername = $this->position->getWorld()->getFolderName();
-			if($this->position->getWorld()->getServer()->allowedworlds($worldfoldername)){
-				return "spawnmob";
-			}else{
-				return "notspawn";
-			}
-
-		}
-	}
-
-	public function notallowedcheck(){
-
-		$notallowedworldscheck = $this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn-not-allowed-worlds");
-		if($notallowedworldscheck == true){
-			$worldfoldername = $this->position->getWorld()->getFolderName();
-			if($this->position->getWorld()->getServer()->notallowedworlds($worldfoldername)){
-				return "notspawn";
-			}else{
-				return "spawnmob";
+	public function allowed_worlds(): bool
+	{
+		if ($this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn-allowed-worlds")) {
+			if ($this->position->getWorld()->getServer()->allowedworlds($this->position->getWorld()->getFolderName())) {
+				return true;
 			}
 		}
+		return false;
 	}
 
-	public function spawnmob(){
-		$otomobspawncheck = $this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn");
+	public function not_allowed_worlds(): bool
+	{
+		if ($this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn-not-allowed-worlds")) {
+			if ($this->position->getWorld()->getServer()->notallowedworlds($this->position->getWorld()->getFolderName())) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-		if($otomobspawncheck == true){
-
-			foreach($this->position->getWorld()->getServer()->getOnlinePlayers() as $player){
-				if($player->getPosition()->distance($this->getPosition()) < 11){
-					if($this->isDayTime($this->position->getWorld())){
-
-
-						$random = rand(1, 300);
-						switch($random){
+	public function Spawn_Random_Mob()
+	{
+		$chance = $this->position->getWorld()->getServer()->getAltayIntConfig("auto-mob-spawn-chance");
+		if ($this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn")) {
+			foreach ($this->position->getWorld()->getServer()->getOnlinePlayers() as $player) {
+				if ($player->getPosition()->distance($this->getPosition()) < 11) {
+					if ($this->isDayTime($this->position->getWorld())) {
+						$random = rand(1, $chance);
+						switch ($random) {
 							case 1:
 								$entity = (new AltayMobs)->createSheep($this->position->getWorld(), $this->position->add(0.5, 1, 0.5), lcg_value() * 360, 0);
 								$entity->spawnToAll();
@@ -128,9 +124,9 @@ class Grass extends Opaque{
 								$entity->spawnToAll();
 								break;
 						}
-					}else{
-						$randomc = rand(1, 300);
-						switch($randomc){
+					} else {
+						$randomc = rand(1, $chance);
+						switch ($randomc) {
 							case 1:
 								$entity = (new AltayMobs)->createZombie($this->position->getWorld(), $this->position->add(0.5, 1, 0.5), lcg_value() * 360, 0);
 								$entity->spawnToAll();
@@ -161,91 +157,85 @@ class Grass extends Opaque{
 			}
 		}
 	}
-
-	public function onRandomTick() : void{
-		$notallowedworldscheck = $this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn-not-allowed-worlds");
-		$allowedworldscheck = $this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn-allowed-worlds");
-		if($notallowedworldscheck == true and $allowedworldscheck == true){
-
-		}else{
-			if($notallowedworldscheck == true){
-				$control2 = $this->notallowedcheck();
-				if($control2 === "notspawn"){
-
-				}else{
-					if($control2 === "spawnmob"){
-						$this->spawnmob();
-					}
+	public function control(){
+		$not_allowed_worlds = $this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn-not-allowed-worlds");
+		$allowed_worlds = $this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn-allowed-worlds");
+		if ($not_allowed_worlds and $allowed_worlds) {
+				if ($this->allowed_worlds()) {
+					$this->Spawn_Random_Mob();
 				}
-
+		} else {
+			if ($not_allowed_worlds) {
+				if ($this->not_allowed_worlds()) {
+				}else{
+					$this->Spawn_Random_Mob();
+				}
 			}
-			if($allowedworldscheck == true){
-				$control = $this->allowedcheck();
-				if($control === "notspawn"){
-
-				}else{
-					if($control === "spawnmob"){
-						$this->spawnmob();
-					}
+			if ($allowed_worlds) {
+				if ($this->allowed_worlds()) {
+					$this->Spawn_Random_Mob();
 				}
-
 			}
 		}
-		if($notallowedworldscheck == false and $allowedworldscheck == false){
-			$this->spawnmob();
+		if ($not_allowed_worlds == false and $allowed_worlds == false) {
+			$this->Spawn_Random_Mob();
 		}
+	}
+	public function onRandomTick(): void
+	{
+		$this->control();
 
 		$lightAbove = $this->position->getWorld()->getFullLightAt($this->position->x, $this->position->y + 1, $this->position->z);
-		if($lightAbove < 4 && $this->position->getWorld()->getBlockAt($this->position->x, $this->position->y + 1, $this->position->z)->getLightFilter() >= 2){
+		if ($lightAbove < 4 && $this->position->getWorld()->getBlockAt($this->position->x, $this->position->y + 1, $this->position->z)->getLightFilter() >= 2) {
 			//grass dies
 			$ev = new BlockSpreadEvent($this, $this, VanillaBlocks::DIRT());
 			$ev->call();
-			if(!$ev->isCancelled()){
+			if (!$ev->isCancelled()) {
 				$this->position->getWorld()->setBlock($this->position, $ev->getNewState(), false);
 			}
-		}elseif($lightAbove >= 9){
+		} elseif ($lightAbove >= 9) {
 			//try grass spread
-			for($i = 0; $i < 4; ++$i){
+			for ($i = 0; $i < 4; ++$i) {
 				$x = mt_rand($this->position->x - 1, $this->position->x + 1);
 				$y = mt_rand($this->position->y - 3, $this->position->y + 1);
 				$z = mt_rand($this->position->z - 1, $this->position->z + 1);
 
 				$b = $this->position->getWorld()->getBlockAt($x, $y, $z);
-				if(
+				if (
 					!($b instanceof Dirt) ||
 					$b->isCoarse() ||
 					$this->position->getWorld()->getFullLightAt($x, $y + 1, $z) < 4 ||
 					$this->position->getWorld()->getBlockAt($x, $y + 1, $z)->getLightFilter() >= 2
-				){
+				) {
 					continue;
 				}
 
 				$ev = new BlockSpreadEvent($b, $this, VanillaBlocks::GRASS());
 				$ev->call();
-				if(!$ev->isCancelled()){
+				if (!$ev->isCancelled()) {
 					$this->position->getWorld()->setBlock($b->position, $ev->getNewState(), false);
 				}
 			}
 		}
 	}
-
-	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null) : bool{
-		if($face !== Facing::UP){
+	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null): bool
+	{
+		if ($face !== Facing::UP) {
 			return false;
 		}
-		if($item instanceof Fertilizer){
+		if ($item instanceof Fertilizer) {
 			$item->pop();
 			TallGrassObject::growGrass($this->position->getWorld(), $this->position, new Random(mt_rand()), 8, 2);
 
 			return true;
-		}elseif($item instanceof Hoe){
+		} elseif ($item instanceof Hoe) {
 			$item->applyDamage(1);
 			$newBlock = VanillaBlocks::FARMLAND();
 			$this->position->getWorld()->addSound($this->position->add(0.5, 0.5, 0.5), new ItemUseOnBlockSound($newBlock));
 			$this->position->getWorld()->setBlock($this->position, $newBlock);
 
 			return true;
-		}elseif($item instanceof Shovel && $this->getSide(Facing::UP)->getId() === BlockLegacyIds::AIR){
+		} elseif ($item instanceof Shovel && $this->getSide(Facing::UP)->getId() === BlockLegacyIds::AIR) {
 			$item->applyDamage(1);
 			$newBlock = VanillaBlocks::GRASS_PATH();
 			$this->position->getWorld()->addSound($this->position->add(0.5, 0.5, 0.5), new ItemUseOnBlockSound($newBlock));
