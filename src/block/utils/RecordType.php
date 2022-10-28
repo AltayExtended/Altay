@@ -47,6 +47,7 @@ use pocketmine\utils\EnumTrait;
  * @method static RecordType DISK_WAIT()
  * @method static RecordType DISK_OTHERSIDE()
  * @method static RecordType DISK_PIGSTEP()
+ * @method static RecordType DISK_5()
  * @method static RecordType DISK_WARD()
  */
 final class RecordType{
@@ -69,7 +70,8 @@ final class RecordType{
 			new RecordType("disk_11", "C418 - 11", LevelSoundEvent::RECORD_11, KnownTranslationFactory::item_record_11_desc()),
 			new RecordType("disk_wait", "C418 - wait", LevelSoundEvent::RECORD_WAIT, KnownTranslationFactory::item_record_wait_desc()),
 			new RecordType("disk_pigstep", "C418 - pigstep", LevelSoundEvent::RECORD_PIGSTEP, KnownTranslationFactory::item_record_pig_step_desc()),
-			new RecordType("disk_otherside", "C418 - otherside", LevelSoundEvent::RECORD_OTHERSIDE, KnownTranslationFactory::item_record_other_side_desc())
+			new RecordType("disk_otherside", "C418 - otherside", LevelSoundEvent::RECORD_OTHERSIDE, KnownTranslationFactory::item_record_other_side_desc()),
+			new RecordType("disk_5", "C418 - 5", LevelSoundEvent::RECORD_5, KnownTranslationFactory::item_record_5_desc())
 		);
 	}
 

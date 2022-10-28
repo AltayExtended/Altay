@@ -331,6 +331,7 @@ class ItemFactory{
 		$this->register(new Record(new IID(Ids::RECORD_WAIT, 0), RecordType::DISK_WAIT(), "Record Wait"));
 		$this->register(new Record(new IID(Ids::RECORD_OTHER_SIDE, 0), RecordType::DISK_OTHERSIDE(), "Record Otherside"));
 		$this->register(new Record(new IID(Ids::RECORD_PIG_STEP, 0), RecordType::DISK_PIGSTEP(), "Record Pigstep"));
+		$this->register(new Record(new IID(Ids::RECORD_5, 0), RecordType::DISK_5(), "Record 5"));
 		$this->register(new Redstone(new IID(Ids::REDSTONE, 0), "Redstone"));
 		$this->register(new RottenFlesh(new IID(Ids::ROTTEN_FLESH, 0), "Rotten Flesh"));
 		$this->register(new Shears(new IID(Ids::SHEARS, 0), "Shears"));

@@ -950,6 +950,10 @@ final class KnownTranslationFactory{
 		return new Translatable(KnownTranslationKeys::ITEM_RECORD_OTHER_SIDE_DESC, []);
 	}
 
+	public static function item_record_5_desc() : Translatable{
+		return new Translatable(KnownTranslationKeys::ITEM_RECORD_5_DESC, []);
+	}
+
 	public static function item_record_11_desc() : Translatable{
 		return new Translatable(KnownTranslationKeys::ITEM_RECORD_11_DESC, []);
 	}
