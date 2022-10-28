@@ -755,4 +755,6 @@ final class ItemIds{
 	public const RAW_GOLD = 506;
 	public const RAW_COPPER = 507;
 
+	public const GOAT_HORN = 2500;
+
 }
