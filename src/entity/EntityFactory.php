@@ -27,6 +27,7 @@ use DaveRandom\CallbackValidator\CallbackType;
 use DaveRandom\CallbackValidator\ParameterType;
 use DaveRandom\CallbackValidator\ReturnType;
 use pocketmine\block\BlockFactory;
+use pocketmine\data\bedrock\EntityLegacyIds;
 use pocketmine\data\bedrock\EntityLegacyIds as LegacyIds;
 use pocketmine\data\bedrock\PotionTypeIdMap;
 use pocketmine\data\bedrock\PotionTypeIds;
@@ -42,9 +43,13 @@ use pocketmine\entity\projectile\Arrow;
 use pocketmine\entity\projectile\Egg;
 use pocketmine\entity\projectile\EnderPearl;
 use pocketmine\entity\projectile\ExperienceBottle;
+use pocketmine\entity\projectile\Fireworks\Fireworks;
+use pocketmine\entity\projectile\Fireworks\FireworksRocket;
 use pocketmine\entity\projectile\Snowball;
 use pocketmine\entity\projectile\SplashPotion;
 use pocketmine\item\Item;
+use pocketmine\item\ItemIdentifier;
+use pocketmine\item\ItemIds;
 use pocketmine\math\Facing;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\NbtException;
@@ -53,6 +58,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
+use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
 use pocketmine\utils\SingletonTrait;
 use pocketmine\utils\Utils;
 use pocketmine\world\World;
@@ -80,6 +86,10 @@ final class EntityFactory{
 	public function __construct(){
 		//define legacy save IDs first - use them for saving for maximum compatibility with Minecraft PC
 		//TODO: index them by version to allow proper multi-save compatibility
+
+		$this->register(FireworksRocket::class, static function (World $world, CompoundTag $nbt): FireworksRocket{
+			return new FireworksRocket(EntityDataHelper::parseLocation($nbt, $world), Item::nbtDeserialize($nbt->getCompoundTag("Item")));
+		}, ["FireworksRocket", EntityIds::FIREWORKS_ROCKET], EntityLegacyIds::FIREWORKS_ROCKET);
 
 		$this->register(Arrow::class, function(World $world, CompoundTag $nbt) : Arrow{
 			return new Arrow(Helper::parseLocation($nbt, $world), null, $nbt->getByte(Arrow::TAG_CRIT, 0) === 1, $nbt);

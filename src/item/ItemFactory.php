@@ -37,6 +37,7 @@ use pocketmine\data\bedrock\EntityLegacyIds;
 use pocketmine\data\bedrock\PotionTypeIdMap;
 use pocketmine\entity\Entity;
 use pocketmine\entity\Location;
+use pocketmine\entity\projectile\Fireworks\Fireworks;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\ItemIdentifier as IID;
 use pocketmine\item\ItemIds as Ids;
@@ -171,6 +172,7 @@ class ItemFactory{
 			), true);
 		}
 
+		$this->register(new Fireworks(new IID(Ids::FIREWORKS, 0), "Fireworks"), true);
 		$this->register(new Coal(new IID(Ids::COAL, 1), "Charcoal"));
 		$this->register(new CocoaBeans(new IID(Ids::DYE, 3), "Cocoa Beans"));
 		$this->register(new Compass(new IID(Ids::COMPASS, 0), "Compass"));
