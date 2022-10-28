@@ -733,6 +733,7 @@ final class ItemIds{
 	public const RECORD_OTHER_SIDE = 2268;
 	public const RECORD_5 = 2269;
 	public const RECORD_PIG_STEP = 2270;
+	public const RECORD_FRAGMENT_5 = 2271;
 
 	public const SHIELD = 513;
 	public const WARDEN_SPAWN_EGG = 632;
@@ -756,5 +757,6 @@ final class ItemIds{
 	public const RAW_COPPER = 507;
 
 	public const GOAT_HORN = 2500;
+	public const RECOVERY_COMPASS = 2501;
 
 }

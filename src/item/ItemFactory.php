@@ -176,6 +176,7 @@ class ItemFactory{
 		$this->register(new Coal(new IID(Ids::COAL, 1), "Charcoal"));
 		$this->register(new CocoaBeans(new IID(Ids::DYE, 3), "Cocoa Beans"));
 		$this->register(new Compass(new IID(Ids::COMPASS, 0), "Compass"));
+		$this->register(new Compass(new IID(Ids::RECOVERY_COMPASS, 0), "Recovery Compass"));
 		$this->register(new CookedChicken(new IID(Ids::COOKED_CHICKEN, 0), "Cooked Chicken"));
 		$this->register(new CookedFish(new IID(Ids::COOKED_FISH, 0), "Cooked Fish"));
 		$this->register(new CookedMutton(new IID(Ids::COOKED_MUTTON, 0), "Cooked Mutton"));
@@ -332,6 +333,7 @@ class ItemFactory{
 		$this->register(new Record(new IID(Ids::RECORD_OTHER_SIDE, 0), RecordType::DISK_OTHERSIDE(), "Record Otherside"));
 		$this->register(new Record(new IID(Ids::RECORD_PIG_STEP, 0), RecordType::DISK_PIGSTEP(), "Record Pigstep"));
 		$this->register(new Record(new IID(Ids::RECORD_5, 0), RecordType::DISK_5(), "Record 5"));
+		$this->register(new Item(new IID(Ids::RECORD_FRAGMENT_5, 0), "Disc Fragment 5"));
 		$this->register(new Redstone(new IID(Ids::REDSTONE, 0), "Redstone"));
 		$this->register(new RottenFlesh(new IID(Ids::ROTTEN_FLESH, 0), "Rotten Flesh"));
 		$this->register(new Shears(new IID(Ids::SHEARS, 0), "Shears"));
