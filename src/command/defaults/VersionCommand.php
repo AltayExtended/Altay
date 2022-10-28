@@ -58,7 +58,7 @@ class VersionCommand extends VanillaCommand{
 		if(count($args) === 0){
 			$versionw = VersionInfo::ALTAY_VERSION;
 			$sender->sendMessage("§f*** §cAltay§c v{$versionw} §f***");
-			$sender->sendMessage("§c* §fSupported Minecraft Bedrock Versions: §c1.19.30");
+			$sender->sendMessage("§c* §fSupported Minecraft Bedrock Edition Versions: §c". ProtocolInfo::MINECRAFT_VERSION . "");
 			$sender->sendMessage("§c* §fOS: §c".Utils::getOS()."");
 			$sender->sendMessage("§c* §f@Altay Team");
 			$sender->sendMessage("§f*** §cAltay§c v{$versionw} §f***");
