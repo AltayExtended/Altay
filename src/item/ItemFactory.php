@@ -148,6 +148,7 @@ class ItemFactory{
 		$this->register(new Bowl(new IID(Ids::BOWL, 0), "Bowl"));
 		$this->register(new Bread(new IID(Ids::BREAD, 0), "Bread"));
 		$this->register(new Bucket(new IID(Ids::BUCKET, 0), "Bucket"));
+		$this->register(new Item(new IID(Ids::POWDER_SNOW_BUCKET, 0), "Powder Snow Bucket"));
 		$this->register(new Carrot(new IID(Ids::CARROT, 0), "Carrot"));
 		$this->register(new ChorusFruit(new IID(Ids::CHORUS_FRUIT, 0), "Chorus Fruit"));
 		$this->register(new Clock(new IID(Ids::CLOCK, 0), "Clock"));
@@ -285,6 +286,7 @@ class ItemFactory{
 		$this->register(new ItemBlock(new IID(Ids::HOPPER, 0), Blocks::HOPPER()));
 		$this->register(new ItemBlock(new IID(Ids::IRON_DOOR, 0), Blocks::IRON_DOOR()));
 		$this->register(new ItemBlock(new IID(Ids::ITEM_FRAME, 0), Blocks::ITEM_FRAME()));
+		$this->register(new ItemBlock(new IID(Ids::GLOW_FRAME_BLOCK, 0), Blocks::GLOW_ITEM_FRAME_BLOCK()));
 		$this->register(new ItemBlock(new IID(Ids::JUNGLE_DOOR, 0), Blocks::JUNGLE_DOOR()));
 		$this->register(new ItemBlock(new IID(Ids::NETHER_WART, 0), Blocks::NETHER_WART()));
 		$this->register(new ItemBlock(new IID(Ids::OAK_DOOR, 0), Blocks::OAK_DOOR()));

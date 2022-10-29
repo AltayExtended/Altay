@@ -342,6 +342,7 @@ use pocketmine\utils\CloningRegistryTrait;
  * @method static Opaque IRON_ORE()
  * @method static Trapdoor IRON_TRAPDOOR()
  * @method static ItemFrame ITEM_FRAME()
+ * @method static GlowItemFrame GLOW_ITEM_FRAME_BLOCK()
  * @method static Jukebox JUKEBOX()
  * @method static WoodenButton JUNGLE_BUTTON()
  * @method static WoodenDoor JUNGLE_DOOR()
@@ -1140,5 +1141,6 @@ final class VanillaBlocks{
 		self::register("netherite_block", $factory->get(Ids::NETHERITE_BLOCK, 0));
 		self::register("amethyst_block", $factory->get(Ids::AMETHYST_BLOCK, 0));
 		self::register("budding_amethyst", $factory->get(Ids::BUDDING_AMETHYST, 0));
+		self::register("glow_item_frame_block", $factory->get(Ids::GLOW_FRAME, 0));
 	}
 }

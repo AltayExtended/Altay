@@ -444,6 +444,7 @@ final class ItemIds{
 	public const DARK_OAK_DOOR_BLOCK = 197;
 	public const GRASS_PATH = 198;
 	public const FRAME_BLOCK = 199, ITEM_FRAME_BLOCK = 199;
+	public const GLOW_FRAME_BLOCK = 623, ITEM_GLOW_FRAME_BLOCK = 623;
 	public const CHORUS_FLOWER = 200;
 	public const PURPUR_BLOCK = 201;
 	public const COLORED_TORCH_RG = 202;
@@ -760,5 +761,6 @@ final class ItemIds{
 
 	public const GOAT_HORN = 2500;
 	public const RECOVERY_COMPASS = 2501;
+	public const POWDER_SNOW_BUCKET = 2502;
 
 }
