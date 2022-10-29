@@ -134,8 +134,9 @@ class ItemFactory{
 		$this->registerTierToolItems();
 
 		$this->register(new Apple(new IID(Ids::APPLE, 0), "Apple"));
-		$this->register(new Arrow(new IID(Ids::ARROW, 0), "Arrow"));
-
+		for ($i = 0; $i <= 43; $i++) {
+			$this->register(new Arrow(new IID(Ids::ARROW, $i), "Arrow"));
+		}
 		$this->register(new BakedPotato(new IID(Ids::BAKED_POTATO, 0), "Baked Potato"));
 		$this->register(new Bamboo(new IID(Ids::BAMBOO, 0), "Bamboo"), true);
 		$this->register(new Beetroot(new IID(Ids::BEETROOT, 0), "Beetroot"));
