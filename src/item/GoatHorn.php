@@ -21,14 +21,6 @@ use pocketmine\world\sound\GoatHorn7;
 
 class GoatHorn extends Item{
 
-	public function getMaxStackSize() : int{
-		return 1;
-	}
-
-	public function getCooldownTicks() : int{
-		return 60;
-	}
-
 	public function onClickAir(Player $player, Vector3 $directionVector): ItemUseResult{
 		if($player->getInventory()->getItemInHand()->getMeta() == 0){
 			$player->getWorld()->addSound($player->getPosition()->add(0.5, 0.5, 0.5), new GoatHorn0());
@@ -56,4 +48,12 @@ class GoatHorn extends Item{
 		}
 			return ItemUseResult::SUCCESS();
 	}
+	public function getMaxStackSize() : int{
+		return 1;
+	}
+
+	public function getCooldownTicks() : int{
+		return 80;
+	}
+
 }
