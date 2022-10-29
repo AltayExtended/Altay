@@ -1815,6 +1815,7 @@ class Player extends Human implements CommandSender, ChunkListener, IPlayer{
 		$ev->call();
 
 		if(!$ev->isCancelled()){
+			$this->inventory->getItemInHand()->onInteractEntity($this, $entity);
 			return $entity->onInteract($this, $clickPos);
 		}
 		return false;

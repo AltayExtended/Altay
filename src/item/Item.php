@@ -528,7 +528,7 @@ class Item implements \JsonSerializable{
 	/**
 	 * Called when a player uses this item on a entity.
 	 */
-	public function onInteractAltayEntity(Player $player, AltayEntity $entity) : ItemUseResult{
+	public function onInteractEntity(Player $player, Entity $entity) : ItemUseResult{
 		return ItemUseResult::NONE();
 	}
 
