@@ -32,6 +32,7 @@ use pocketmine\utils\CloningRegistryTrait;
  * @see build/generate-registry-annotations.php
  * @generate-registry-docblock
  *
+ * @method static AmethystBlock AMETHYST_BLOCK()
  * @method static WoodenButton ACACIA_BUTTON()
  * @method static WoodenDoor ACACIA_DOOR()
  * @method static WoodenFence ACACIA_FENCE()
@@ -924,6 +925,7 @@ final class VanillaBlocks{
 		self::register("lab_table", $factory->get(Ids::CHEMISTRY_TABLE, 12));
 		self::register("ladder", $factory->get(Ids::LADDER, 2));
 		self::register("lantern", $factory->get(Ids::LANTERN, 0));
+		self::register("soul_lantern", $factory->get(Ids::SOUL_LANTERN, 0));
 		self::register("lapis_lazuli", $factory->get(Ids::LAPIS_BLOCK, 0));
 		self::register("lapis_lazuli_ore", $factory->get(Ids::LAPIS_ORE, 0));
 		self::register("large_fern", $factory->get(Ids::DOUBLE_PLANT, 3));
@@ -1135,5 +1137,8 @@ final class VanillaBlocks{
 		self::register("white_tulip", $factory->get(Ids::POPPY, 6));
 		self::register("wool", $factory->get(Ids::WOOL, 0));
 		self::register("yellow_glazed_terracotta", $factory->get(Ids::YELLOW_GLAZED_TERRACOTTA, 2));
+		self::register("netherite_block", $factory->get(Ids::NETHERITE_BLOCK, 0));
+		self::register("amethyst_block", $factory->get(Ids::AMETHYST_BLOCK, 0));
+		self::register("budding_amethyst", $factory->get(Ids::BUDDING_AMETHYST, 0));
 	}
 }

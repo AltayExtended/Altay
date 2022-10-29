@@ -741,5 +741,6 @@ final class VanillaItems{
 		self::register("raw_iron", $factory->get(Ids::RAW_IRON));
 		self::register("raw_gold", $factory->get(Ids::RAW_GOLD));
 		self::register("raw_copper", $factory->get(Ids::RAW_COPPER));
+		self::register("amethyst_shard", $factory->get(Ids::AMETHYST_SHARD));
 	}
 }

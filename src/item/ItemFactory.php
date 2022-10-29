@@ -305,6 +305,7 @@ class ItemFactory{
 		$this->register(new Minecart(new IID(Ids::MINECART, 0), "Minecart"));
 		$this->register(new NameTag(new IID(Ids::NAME_TAG, 0), "Name Tag"));
 		$this->register(new Item(new IID(Ids::SPYGLASS, 0), "Spyglass"));
+		$this->register(new Item(new IID(Ids::AMETHYST_SHARD, 0), "Amethyst Shard"));
 		$this->register(new MushroomStew(new IID(Ids::MUSHROOM_STEW, 0), "Mushroom Stew"));
 		$this->register(new PaintingItem(new IID(Ids::PAINTING, 0), "Painting"));
 		$this->register(new PoisonousPotato(new IID(Ids::POISONOUS_POTATO, 0), "Poisonous Potato"));
@@ -365,6 +366,10 @@ class ItemFactory{
 		$this->register(new Item(new IID(Ids::HORSE_ARMOR_IRON, 0), "Iron Horse Armor"));
 		$this->register(new Item(new IID(Ids::HORSE_ARMOR_GOLD, 0), "Gold Horse Armor"));
 		$this->register(new Item(new IID(Ids::HORSE_ARMOR_DIAMOND, 0), "Diamond Horse Armor"));
+		$this->register(new Item(new IID(Ids::ENDER_EYE, 0), "Ender Eye"));
+		$this->register(new Item(new IID(Ids::TNT_MINECART, 0), "Tnt Minecart"));
+		$this->register(new Item(new IID(Ids::HOPPER_MINECART, 0), "Hopper Minecart"));
+		$this->register(new Item(new IID(Ids::CHEST_MINECART, 0), "Chest Minecart"));
 		$this->register(new GoatHorn(new IID(Ids::GOAT_HORN, 0), "Goat Horn"));
 		$this->register(new GoatHorn(new IID(Ids::GOAT_HORN, 1), "Goat Horn"));
 		$this->register(new GoatHorn(new IID(Ids::GOAT_HORN, 2), "Goat Horn"));
@@ -373,6 +378,7 @@ class ItemFactory{
 		$this->register(new GoatHorn(new IID(Ids::GOAT_HORN, 5), "Goat Horn"));
 		$this->register(new GoatHorn(new IID(Ids::GOAT_HORN, 6), "Goat Horn"));
 		$this->register(new GoatHorn(new IID(Ids::GOAT_HORN, 7), "Goat Horn"));
+		$this->register(new Item(new IID(Ids::ENCHANTED_BOOK, 0), "Enchanted Book"));
 
 		foreach(SkullType::getAll() as $skullType){
 			$this->register(new Skull(new IID(Ids::SKULL, $skullType->getMagicNumber()), $skullType->getDisplayName(), $skullType));

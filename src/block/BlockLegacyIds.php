@@ -497,5 +497,13 @@ final class BlockLegacyIds{
 	public const WOOD = 467;
 	public const COMPOSTER = 468;
 	public const LIT_BLAST_FURNACE = 469;
+	public const SOUL_LANTERN = 524;
+	public const NETHERITE_BLOCK = 525;
+	public const AMETHYST_BLOCK = 582;
+	public const BUDDING_AMETHYST = 583;
+	public const AMETHYST_CLUSTER = 584;
+	public const LARGE_AMETHYST_BUD = 585;
+	public const MEDIUM_AMETHYST_BUD = 586;
+	public const SMALL_AMETHYST_BUD = 587;
 
 }

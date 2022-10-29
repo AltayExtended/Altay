@@ -38,6 +38,7 @@ final class ItemIds{
 	public const LANTERN = -208;
 	public const SWEET_BERRY_BUSH = -207;
 	public const BELL = -206;
+	public const AMETHYST_BLOCK = -327;
 
 	public const LOOM = -204;
 	public const BARREL = -203;
@@ -738,7 +739,8 @@ final class ItemIds{
 	public const SHIELD = 513;
 	public const WARDEN_SPAWN_EGG = 632;
 	public const ALLAY_SPAWN_EGG = 631;
-	public const SPYGLASS = 625;
+	public const AMETHYST_SHARD = 625;
+	public const SPYGLASS = 626;
 	public const NETHERITE_HELMET = 748;
 	public const NETHERITE_CHESTPLATE = 749;
 	public const NETHERITE_LEGGINGS = 750;
