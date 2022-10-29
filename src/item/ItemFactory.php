@@ -360,6 +360,11 @@ class ItemFactory{
 		$this->register(new Item(new IID(Ids::RAW_GOLD, 0), "Raw Gold"));
 		$this->register(new Item(new IID(Ids::RAW_COPPER, 0), "Raw Copper"));
 		$this->register(new Item(new IID(Ids::SHIELD, 0), "Shield"));
+		$this->register(new Item(new IID(Ids::LEAD, 0), "Lead"));
+		$this->register(new Item(new IID(Ids::HORSE_ARMOR_LEATHER, 0), "Leather Horse Armor"));
+		$this->register(new Item(new IID(Ids::HORSE_ARMOR_IRON, 0), "Iron Horse Armor"));
+		$this->register(new Item(new IID(Ids::HORSE_ARMOR_GOLD, 0), "Gold Horse Armor"));
+		$this->register(new Item(new IID(Ids::HORSE_ARMOR_DIAMOND, 0), "Diamond Horse Armor"));
 		$this->register(new GoatHorn(new IID(Ids::GOAT_HORN, 0), "Goat Horn"));
 		$this->register(new GoatHorn(new IID(Ids::GOAT_HORN, 1), "Goat Horn"));
 		$this->register(new GoatHorn(new IID(Ids::GOAT_HORN, 2), "Goat Horn"));
