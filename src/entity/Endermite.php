@@ -49,6 +49,6 @@ class Endermite extends AltayEntity{
 	}
 
 	public function getXpDropAmount() : int{
-		return 1 + mt_rand(1, 1);
+		return 1;
 	}
 }
