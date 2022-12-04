@@ -139,7 +139,7 @@ class SimpleCommandMap implements CommandMap{
 
 	public function register(string $fallbackPrefix, Command $command, ?string $label = null) : bool{
 		if($label === null){
-			$label = $command->getName();
+			$label = $command->getLabel();
 		}
 		$label = trim($label);
 		$fallbackPrefix = strtolower(trim($fallbackPrefix));
@@ -166,18 +166,12 @@ class SimpleCommandMap implements CommandMap{
 	public function unregister(Command $command) : bool{
 		foreach($this->knownCommands as $lbl => $cmd){
 			if($cmd === $command){
-				$komut = $this->getCommand("version");
-				if($command === $komut){
-				}else{
-					unset($this->knownCommands[$lbl]);
-				}
+				unset($this->knownCommands[$lbl]);
 			}
 		}
-		$komut = $this->getCommand("version");
-		if($command === $komut){
-		}else{
-			$command->unregister($this);
-		}
+
+		$command->unregister($this);
+
 		return true;
 	}
 
@@ -278,10 +272,11 @@ class SimpleCommandMap implements CommandMap{
 			}
 
 			//These registered commands have absolute priority
+			$lowerAlias = strtolower($alias);
 			if(count($targets) > 0){
-				$this->knownCommands[strtolower($alias)] = new FormattedCommandAlias(strtolower($alias), $targets);
+				$this->knownCommands[$lowerAlias] = new FormattedCommandAlias($lowerAlias, $targets);
 			}else{
-				unset($this->knownCommands[strtolower($alias)]);
+				unset($this->knownCommands[$lowerAlias]);
 			}
 
 		}

@@ -13,11 +13,5 @@ auto-mob-spawn-not-allowed-worlds: false
 #AUTO MOB SPAWN CHANCE (DEFAULT= 750), (MINIMUM= 1)
 auto-mob-spawn-chance: 750
 
-#CACTUS GROWNING SPEED (DEFAULT= 10), (MINIMUM= 1)
-cactus-grown-chance: 10
-
-#SUGARCANE GROWNING SPEED (DEFAULT= 10), (MINIMUM= 1)
-sugarcane-grown-chance: 10
-
 #If this setting is turned on, people can create snow golem on your server.
 snow-golem-creation: true

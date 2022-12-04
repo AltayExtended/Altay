@@ -257,7 +257,7 @@ class BlockFactory{
 		$this->registerAllMeta(new Trapdoor(new BID(Ids::IRON_TRAPDOOR, 0), "Iron Trapdoor", $ironDoorBreakInfo));
 		$this->registerAllMeta(new Opaque(new BID(Ids::IRON_ORE, 0), "Iron Ore", new BreakInfo(3.0, ToolType::PICKAXE, ToolTier::STONE()->getHarvestLevel())));
 		$this->registerAllMeta(new ItemFrame(new BID(Ids::FRAME_BLOCK, 0, ItemIds::FRAME, TileItemFrame::class), "Item Frame", new BreakInfo(0.25)));
-		$this->registerAllMeta(new ItemFrame(new BID(Ids::GLOW_FRAME, 0, ItemIds::GLOW_FRAME_BLOCK, TileItemFrame::class), "Glow Item Frame", new BreakInfo(0.25)));
+		#$this->registerAllMeta(new ItemFrame(new BID(Ids::GLOW_FRAME, 0, ItemIds::GLOW_FRAME_BLOCK, TileItemFrame::class), "Glow Item Frame", new BreakInfo(0.25)));
 		$this->registerAllMeta(new Jukebox(new BID(Ids::JUKEBOX, 0, ItemIds::JUKEBOX, TileJukebox::class), "Jukebox", new BreakInfo(0.8, ToolType::AXE))); //TODO: in PC the hardness is 2.0, not 0.8, unsure if this is a MCPE bug or not
 		$this->registerAllMeta(new Ladder(new BID(Ids::LADDER, 0), "Ladder", new BreakInfo(0.4, ToolType::AXE)));
 		$this->registerAllMeta(new Lantern(new BID(Ids::LANTERN, 0), "Lantern", new BreakInfo(5.0, ToolType::PICKAXE, ToolTier::WOOD()->getHarvestLevel())));
@@ -275,11 +275,11 @@ class BlockFactory{
 		$this->registerAllMeta(new Mycelium(new BID(Ids::MYCELIUM, 0), "Mycelium", new BreakInfo(0.6, ToolType::SHOVEL)));
 		$this->registerAllMeta(new Opaque(new BID(Ids::NETHERITE_BLOCK, 0), "Netherite Block", new BreakInfo(50.0, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
 		$this->registerAllMeta(new Opaque(new BID(Ids::AMETHYST_BLOCK, 0), "Amethyst Block", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
-		$this->registerAllMeta(new Opaque(new BID(Ids::BUDDING_AMETHYST, 0), "Budding Amethyst Block", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
-		$this->registerAllMeta(new Opaque(new BID(Ids::SMALL_AMETHYST_BUD, 0), "Small Amethyst Bud", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
-		$this->registerAllMeta(new Opaque(new BID(Ids::MEDIUM_AMETHYST_BUD, 0), "Medium Amethyst Bud", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
-		$this->registerAllMeta(new Opaque(new BID(Ids::LARGE_AMETHYST_BUD, 0), "Large Amethyst Bud", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
-		$this->registerAllMeta(new AmethystCluster(new BID(Ids::AMETHYST_CLUSTER, 0), "Amethyst Cluster", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
+		#$this->registerAllMeta(new Opaque(new BID(Ids::BUDDING_AMETHYST, 0), "Budding Amethyst Block", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
+		#$this->registerAllMeta(new Opaque(new BID(Ids::SMALL_AMETHYST_BUD, 0), "Small Amethyst Bud", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
+		#$this->registerAllMeta(new Opaque(new BID(Ids::MEDIUM_AMETHYST_BUD, 0), "Medium Amethyst Bud", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
+		#$this->registerAllMeta(new Opaque(new BID(Ids::LARGE_AMETHYST_BUD, 0), "Large Amethyst Bud", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
+		#$this->registerAllMeta(new AmethystCluster(new BID(Ids::AMETHYST_CLUSTER, 0), "Amethyst Cluster", new BreakInfo(1.5, ToolType::PICKAXE, ToolTier::IRON()->getHarvestLevel())));
 		$this->registerAllMeta(new Opaque(new BID(Ids::POWDER_SNOW, 0), "Powder Snow", new BreakInfo(0.25, ToolType::SHOVEL, ToolTier::WOOD()->getHarvestLevel())));
 
 		$netherBrickBreakInfo = new BreakInfo(2.0, ToolType::PICKAXE, ToolTier::WOOD()->getHarvestLevel(), 30.0);

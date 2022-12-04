@@ -31,10 +31,10 @@ use function str_repeat;
 
 final class VersionInfo{
 	public const NAME = "Altay";
-	public const BASE_VERSION = "4.10.9";
+	public const BASE_VERSION = "4.12.1";
 	public const IS_DEVELOPMENT_BUILD = false;
 	public const BUILD_CHANNEL = "stable";
-	public const ALTAY_VERSION = "1.0.4";
+	public const ALTAY_VERSION = "1.0.5";
 
 	private function __construct(){
 		//NOOP

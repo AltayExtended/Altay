@@ -27,8 +27,8 @@ use DaveRandom\CallbackValidator\CallbackType;
 use DaveRandom\CallbackValidator\ParameterType;
 use DaveRandom\CallbackValidator\ReturnType;
 use pocketmine\block\BlockFactory;
-use pocketmine\data\bedrock\EntityLegacyIds;
 use pocketmine\data\bedrock\EntityLegacyIds as LegacyIds;
+use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
 use pocketmine\data\bedrock\PotionTypeIdMap;
 use pocketmine\data\bedrock\PotionTypeIds;
 use pocketmine\data\SavedDataLoadingException;
@@ -36,6 +36,8 @@ use pocketmine\entity\EntityDataHelper as Helper;
 use pocketmine\entity\object\ExperienceOrb;
 use pocketmine\entity\object\FallingBlock;
 use pocketmine\entity\object\ItemEntity;
+use pocketmine\item\ItemIdentifier;
+use pocketmine\item\ItemIds;
 use pocketmine\entity\object\Painting;
 use pocketmine\entity\object\PaintingMotive;
 use pocketmine\entity\object\PrimedTNT;
@@ -43,13 +45,11 @@ use pocketmine\entity\projectile\Arrow;
 use pocketmine\entity\projectile\Egg;
 use pocketmine\entity\projectile\EnderPearl;
 use pocketmine\entity\projectile\ExperienceBottle;
-use pocketmine\entity\projectile\Fireworks\Fireworks;
-use pocketmine\entity\projectile\Fireworks\FireworksRocket;
 use pocketmine\entity\projectile\Snowball;
 use pocketmine\entity\projectile\SplashPotion;
+use pocketmine\entity\projectile\Fireworks\Fireworks;
+use pocketmine\entity\projectile\Fireworks\FireworksRocket;
 use pocketmine\item\Item;
-use pocketmine\item\ItemIdentifier;
-use pocketmine\item\ItemIds;
 use pocketmine\math\Facing;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\NbtException;
@@ -58,7 +58,6 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
-use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
 use pocketmine\utils\SingletonTrait;
 use pocketmine\utils\Utils;
 use pocketmine\world\World;
@@ -89,7 +88,7 @@ final class EntityFactory{
 
 		$this->register(FireworksRocket::class, static function (World $world, CompoundTag $nbt): FireworksRocket{
 			return new FireworksRocket(EntityDataHelper::parseLocation($nbt, $world), Item::nbtDeserialize($nbt->getCompoundTag("Item")));
-		}, ["FireworksRocket", EntityIds::FIREWORKS_ROCKET], EntityLegacyIds::FIREWORKS_ROCKET);
+		}, ["FireworksRocket", EntityIds::FIREWORKS_ROCKET], LegacyIds::FIREWORKS_ROCKET);
 
 		$this->register(Arrow::class, function(World $world, CompoundTag $nbt) : Arrow{
 			return new Arrow(Helper::parseLocation($nbt, $world), null, $nbt->getByte(Arrow::TAG_CRIT, 0) === 1, $nbt);
@@ -186,20 +185,6 @@ final class EntityFactory{
 	}
 
 	/**
-	 * @phpstan-param \Closure(World, CompoundTag) : Entity $creationFunc
-	 */
-	private static function validateCreationFunc(\Closure $creationFunc) : void{
-		$sig = new CallbackType(
-			new ReturnType(Entity::class),
-			new ParameterType("world", World::class),
-			new ParameterType("nbt", CompoundTag::class)
-		);
-		if(!$sig->isSatisfiedBy($creationFunc)){
-			throw new \TypeError("Declaration of callable `" . CallbackType::createFromCallable($creationFunc) . "` must be compatible with `" . $sig . "`");
-		}
-	}
-
-	/**
 	 * Registers an entity type into the index.
 	 *
 	 * @param string   $className Class that extends Entity
@@ -217,7 +202,11 @@ final class EntityFactory{
 			throw new \InvalidArgumentException("At least one save name must be provided");
 		}
 		Utils::testValidInstance($className, Entity::class);
-		self::validateCreationFunc($creationFunc);
+		Utils::validateCallableSignature(new CallbackType(
+			new ReturnType(Entity::class),
+			new ParameterType("world", World::class),
+			new ParameterType("nbt", CompoundTag::class)
+		), $creationFunc);
 
 		foreach($saveNames as $name){
 			$this->creationFuncs[$name] = $creationFunc;

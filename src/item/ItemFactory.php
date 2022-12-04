@@ -364,6 +364,7 @@ class ItemFactory{
 		$this->register(new Item(new IID(Ids::RAW_COPPER, 0), "Raw Copper"));
 		$this->register(new Item(new IID(Ids::SHIELD, 0), "Shield"));
 		$this->register(new Item(new IID(Ids::LEAD, 0), "Lead"));
+		$this->register(new Item(new IID(Ids::ELYTRA, 0), "Elytra"));
 		$this->register(new Item(new IID(Ids::HORSE_ARMOR_LEATHER, 0), "Leather Horse Armor"));
 		$this->register(new Item(new IID(Ids::HORSE_ARMOR_IRON, 0), "Iron Horse Armor"));
 		$this->register(new Item(new IID(Ids::HORSE_ARMOR_GOLD, 0), "Gold Horse Armor"));
@@ -815,7 +816,7 @@ class ItemFactory{
 				return new Ravager(Location::fromObject($pos, $world, $yaw, $pitch));
 			}
 		});
-		}
+	}
 
 	private function registerTierToolItems() : void{
 		$this->register(new Axe(new IID(Ids::NETHERITE_AXE, 0), "Netherite Axe", ToolTier::NETHERITE()));

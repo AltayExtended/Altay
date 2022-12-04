@@ -73,13 +73,13 @@ class VersionCommand extends VanillaCommand{
 			}else{
 				$jitStatus = KnownTranslationFactory::pocketmine_command_version_phpJitNotSupported();
 			}
-			
+
 		}else{
 			$pluginName = implode(" ", $args);
 			$exactPlugin = $sender->getServer()->getPluginManager()->getPlugin($pluginName);
 
 			if($exactPlugin instanceof Plugin){
-				
+
 
 				return true;
 			}
@@ -93,7 +93,7 @@ class VersionCommand extends VanillaCommand{
 			}
 
 			if(!$found){
-				
+
 			}
 		}
 

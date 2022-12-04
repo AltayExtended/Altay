@@ -18,7 +18,7 @@
  *
  *
  */
-#xd
+
 declare(strict_types=1);
 
 namespace pocketmine\command\defaults;

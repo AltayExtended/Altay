@@ -43,7 +43,6 @@ final class Skin{
 	private string $capeData;
 	private string $geometryName;
 	private string $geometryData;
-	private string $cape;
 
 	private static function checkLength(string $string, string $name, int $maxLength) : void{
 		if(strlen($string) > $maxLength){

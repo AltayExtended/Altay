@@ -161,9 +161,9 @@ class Grass extends Opaque
 		$not_allowed_worlds = $this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn-not-allowed-worlds");
 		$allowed_worlds = $this->position->getWorld()->getServer()->getAltayBoolConfig("auto-mob-spawn-allowed-worlds");
 		if ($not_allowed_worlds and $allowed_worlds) {
-				if ($this->allowed_worlds()) {
-					$this->Spawn_Random_Mob();
-				}
+			if ($this->allowed_worlds()) {
+				$this->Spawn_Random_Mob();
+			}
 		} else {
 			if ($not_allowed_worlds) {
 				if ($this->not_allowed_worlds()) {
